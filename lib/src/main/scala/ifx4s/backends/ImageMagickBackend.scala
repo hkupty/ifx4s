@@ -1,9 +1,9 @@
 package ifx4s.backends
 
-import sys.process._
-import ifx4s.data.Image
 import ifx4s.ConversionStrategy
+import ifx4s.data.Image
 import scala.concurrent.{Future, ExecutionContext}
+import sys.process._
 
 object ImageMagick extends BaseBackend {
 
