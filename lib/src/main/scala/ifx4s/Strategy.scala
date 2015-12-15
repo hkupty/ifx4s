@@ -11,7 +11,7 @@ abstract trait ConversionStrategy {
 
 object NamedPipeConversionStrategy extends ConversionStrategy {
 
-  override def getOutputFile(image: Image, fileType: String) = {
+  override def getOutputFile(image: Image, fileType: String): Image = {
     val filePath = super.getOutputFilename(image, fileType)
     val ret = Process("mkfifo", Seq(filePath))!!
 
