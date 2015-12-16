@@ -1,6 +1,6 @@
 package ifx4s.backends
 
-import ifx4s.ConversionStrategy
+import ifx4s.Strategy
 import ifx4s.data.Image
 import scala.concurrent.{Future, ExecutionContext}
 import sys.process._
@@ -23,7 +23,7 @@ object ImageMagick extends BaseBackend {
   //- Public
   override def isAvailable: Boolean = implementedFormats.nonEmpty
 
-  override def convertImage(image: Image, targetFileType: String)(implicit strategy: ConversionStrategy, ec: ExecutionContext): Future[Image] = Future {
+  override def convertImage(image: Image, targetFileType: String)(implicit strategy: Strategy, ec: ExecutionContext): Future[Image] = Future {
     val outFile: Image = strategy.getOutputFile(image, targetFileType)
 
     outFile
