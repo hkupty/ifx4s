@@ -1,4 +1,6 @@
 organization := "com.github.hkupty"
+scalaVersion in ThisBuild := "2.11.7"
+
 lazy val deps = Seq(
   libraryDependencies ++= Seq(
     "com.github.pathikrit" %% "better-files" % "2.14.0"
