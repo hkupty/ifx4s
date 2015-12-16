@@ -1,18 +1,15 @@
 package ifx4s.data
 
-import java.nio.file.{Paths, Path, Files};
-import scala.concurrent.{Future, ExecutionContext};
+import better.files._
 
 
 abstract trait Image {
   def filename: String
-  def getBytes: Array[Byte]
-  def getBytesAsync(implicit ec: ExecutionContext): Future[Array[Byte]]
+  def getBytes: Iterator[Byte]
 }
 
-case class NioImage(filename: String, fileType: String) extends Image {
-  private val path: Path = Paths.get(filename)
+case class FileImage(filename: String, fileType: String) extends Image {
+  private val path: File = filename.toFile
 
-  override def getBytes: Array[Byte] = Files.readAllBytes(path)
-  override def getBytesAsync(implicit ec: ExecutionContext): Future[Array[Byte]] = Future(this.getBytes)
+  override def getBytes: Iterator[Byte] = path.bytes
 }
